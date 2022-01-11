@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+<title>
+  {% block title %}
+    {{ title }}
+  {% endblock %}
+</title>
+{% block content %}
+  <main>
+    <div class="container py-5">
+      <h1>
+        {{ title }}
+      </h1>
+      <p>
+        {{ group }}
+      </p>
+      {% for post in posts %}
+        <article>
+          <ul>
+            <li>
+              Автор: {{ post.author.get_full_name }}
+            </li>
+            <li>
+              Дата публикации: {{ post.pub_date|date:"d E Y" }}
+            </li>
+          </ul>
+          <p>
+            {{ post.text }}
+          </p>
+        </article>
+      {% if not forloop.last %}
+      <hr>
+      {% endif %}
+      <!-- под последним постом нет линии -->
+    </div>
+    {% endfor %}
+  </main>
+{% endblock %}
