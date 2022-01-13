@@ -1,15 +1,11 @@
 {% extends 'base.html' %}
-<title>
-  {% block title %}
-    {{ title }}
-  {% endblock %}
-</title>
+{% block title %}
+  {{ title }}
+{% endblock %}
 {% block content %}
   <main>
     <div class="container py-5">
-      <h1>
-        {{ title }}
-      </h1>
+      <h1>{{ title }}</h1>
       <p>
         {{ group }}
       </p>
@@ -28,9 +24,8 @@
           </p>
         </article>
       {% if not forloop.last %}
-      <hr>
+        <hr>
       {% endif %}
-      <!-- под последним постом нет линии -->
     </div>
     {% endfor %}
   </main>
