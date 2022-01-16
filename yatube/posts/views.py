@@ -1,16 +1,15 @@
 from django.shortcuts import render, get_object_or_404
 from .models import Post, Group
 
-TOP_LINES_RESULT_QUERY: int = 10
-
+FIRST_RECORD: int = 10
 
 def index(request):
     template = 'posts/index.html'
     title = 'Последние обновления на сайте'
-    posts = Post.objects.all()[:TOP_LINES_RESULT_QUERY]
+    posts = Post.objects.all()[:FIRST_RECORD]
     context = {
         'posts': posts,
-        'title': title
+        'title': title,
     }
     return render(request, template, context)
 
@@ -18,11 +17,8 @@ def index(request):
 def group_posts(request, slug):
     template = 'posts/group_list.html'
     group = get_object_or_404(Group, slug=slug)
-    title = f'Записи сообщества {group}'
-#    posts = Post.objects.filter(group=group)[:TOP_LINES_RESULT_QUERY]
-    posts = group.group_posts.all()[:TOP_LINES_RESULT_QUERY]
+    posts = group.posts.all()[:FIRST_RECORD]
     context = {
-        'title': title,
         'group': group,
         'posts': posts,
     }
