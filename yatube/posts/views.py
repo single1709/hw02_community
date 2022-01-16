@@ -3,6 +3,7 @@ from .models import Post, Group
 
 FIRST_RECORD: int = 10
 
+
 def index(request):
     template = 'posts/index.html'
     title = 'Последние обновления на сайте'
