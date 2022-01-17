@@ -6,11 +6,9 @@ FIRST_RECORD: int = 10
 
 def index(request):
     template = 'posts/index.html'
-    title = 'Последние обновления на сайте'
     posts = Post.objects.all()[:FIRST_RECORD]
     context = {
         'posts': posts,
-        'title': title,
     }
     return render(request, template, context)
 
